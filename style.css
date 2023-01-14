@@ -10,207 +10,127 @@ body {
     width: 100%;
 }
 
-@media (min-aspect-ratio: 115/100) {
-    :root {
-        --cubeSize: calc((100vw / 7) * 3 * 0.7);
-    }
-    #application {
-        grid-template-rows: 1fr;
-        grid-template-columns: 3fr 3fr 1fr;
-    }
-    #scheme, #cube {
-        height: var(--cubeSize);
-        width: var(--cubeSize);
-    }
-    #controls {
-        height: calc((100vw / 7) * 3 * 0.2);
-        width: calc((100vw / 7) * 3 * 0.3);
-        border: 2px solid black;
-    }
-}
-
-@media (min-aspect-ratio: 3/4) {
-    :root {
-        --cubeSize: calc((100vh / 7) * 3 * 0.7);
-    }
-    #aplication {
-        grid-template-rows: 3fr 3fr 1fr;
-        grid-template-columns: 1fr;
-    }
-    #scheme, #cube {
-        height: var(--cubeSize);
-        width: var(--cubeSize);
-    }
-    #controls {
-        height: calc((100vh / 7) * 3 * 0.2);
-        width: calc((100vh / 7) * 3 * 0.3);
-    }
-}
-
 :root {
+    --cubeSize: 45vh;
     --halfCube: calc(var(--cubeSize) / 2);
-    --thirdCube: calc(var(--cubeSize) / 3);
-    --halfThird: calc(var(--thirdCube) / 2);
-    --twoThird: calc(var(--thirdCube) * 1);
+    --pieceSize: calc(var(--cubeSize) / 3);
+    --halfPiece: calc(var(--pieceSize) / 2);
+    --thirdPiece: calc(var(--pieceSize) / 3);
+    --twoThird: calc(var(--thirdPiece) * 2);
+    --doublePieceSize: calc(var(--pieceSize) * 2);
 }
 
-#application {
+.rubik {
     position: relative;
     height: 100%;
     width: 100%;
     display: grid;
-}
-
-#schemeContainer, #cubeContainer, #controlsContainer {
-    display: grid;
-    height: 100%;
-    width: 100%;
     place-content: center;
-    border: 2px solid black;
-}
-
-#scheme, #controls {
-    border: 2px solid black;
-}
-
-#cubeContainer {
     background-color: purple;
 }
 
-#cube {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
+.cubeContainer {
+    height: var(--cubeSize);
+    width: var(--cubeSize);
     transform-style: preserve-3d;
     transform-origin: var(--halfCube) var(--halfCube) 0;
 }
 
-.front, .back, .up, .down, .left, .right {
+.cubeContainer > div {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    background-color: black;
-    z-index: -1;
+    height: var(--pieceSize);
+    width: var(--pieceSize);
+    transform-style: preserve-3d;
+    transform-origin: var(--halfPiece) var(--halfPiece) 0;
+}
+.corner1, .side5, .corner6 {
+    top: 0;
+    left: 0;
+}
+.side1, .center3, .side9 {
+    top: 0;
+    left: var(--pieceSize);
+}
+.corner2, .side6, .corner5 {
+    top: 0;
+    left: var(--doublePieceSize);
+}
+.side4, .center5, .side10 {
+    top: var(--pieceSize);
+    left: 0;
+}
+.center1, .center2 {
+    top: var(--pieceSize);
+    left: var(--pieceSize);
+}
+.side2, .center6, .side12 {
+    top: var(--pieceSize);
+    left: var(--doublePieceSize);
+}
+.corner4, .side8, .corner7 {
+    top: var(--doublePieceSize);
+    left: 0;
+}
+.side3, .center4, .side11 {
+    top: var(--doublePieceSize);
+    left: var(--pieceSize);
+}
+.corner3, .side7, .corner8 {
+    top: var(--doublePieceSize);
+    left: var(--doublePieceSize);
 }
 
-.white, .yellow, .green, .blue, .red, .orange {
+.cubeContainer > div > div {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    border: 2px solid black;
+    height: var(--pieceSize);
+    width: var(--pieceSize);
+    border: solid 2px black;
     border-radius: 15%;
 }
-
-.stk1 {
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 1;
+.face1, .face2, .face3, .face4, .face5, .face6 {
+    background-color: black;
 }
-.stk2 {
-    grid-row: 1 / span 1;
-    grid-column: 2 / span 1;
-}
-.stk3 {
-    grid-row: 1 / span 1;
-    grid-column: 3 / span 1;
-}
-.stk4 {
-    grid-row: 2 / span 1;
-    grid-column: 1 / span 1;
-}
-.stk5 {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
-}
-.stk6 {
-    grid-row: 2 / span 1;
-    grid-column: 3 / span 1;
-}
-.stk7 {
-    grid-row: 3 / span 1;
-    grid-column: 1 / span 1;
-}
-.stk8 {
-    grid-row: 3 / span 1;
-    grid-column: 2 / span 1;
-}
-.stk9 {
-    grid-row: 3 / span 1;
-    grid-column: 3 / span 1;
-}
-
-.front {
-    transform: translateZ(calc(var(--halfCube) - 1px));
-}
-.back {
-    transform: rotateY(180deg) translateZ(calc(var(--halfCube) - 1px));
-}
-.up {
-    transform: rotateX(90deg) translateZ(calc(var(--halfCube) - 1px));
-}
-.down {
-    transform: rotateX(-90deg) translateZ(calc(var(--halfCube) - 1px));
-}
-.left {
-    transform: rotateY(-90deg) translateZ(calc(var(--halfCube) - 1px));
-}
-.right {
-    transform: rotateY(90deg) translateZ(calc(var(--halfCube) - 1px));
-}
-
-.white {
+.faceF {
     background-color: white;
-    transform: translateZ(var(--halfCube));
 }
-.yellow {
+.faceB {
     background-color: yellow;
-    transform: rotateY(180deg) translateZ(var(--halfCube));
 }
-.green.stk1, .green.stk2, .green.stk3 {
+.faceU {
     background-color: green;
-    transform: rotateX(90deg) translateY(calc(var(--twoThird) * -1)) translateZ(var(--halfThird));
 }
-.green.stk4, .green.stk5, .green.stk6 {
-    background-color: green;
-    transform: rotateX(90deg) translateZ(var(--halfCube));
-}
-.green.stk7, .green.stk8, .green.stk9 {
-    background-color: green;
-    transform: rotateX(90deg) translateY(var(--twoThird)) translateZ(calc(var(--halfCube) + var(--twoThird)));
-}
-.blue.stk1, .blue.stk2, .blue.stk3 {
+.faceD {
     background-color: blue;
-    transform: rotateX(-90deg) translateY(var(--twoThird)) translateZ(calc(var(--halfCube) + var(--twoThird)));
 }
-.blue.stk4, .blue.stk5, .blue.stk6 {
-    background-color: blue;
-    transform: rotateX(-90deg) translateZ(var(--halfCube));
-}
-.blue.stk7, .blue.stk8, .blue.stk9 {
-    background-color: blue;
-    transform: rotateX(-90deg) translateY(calc(var(--twoThird) * -1)) translateZ(var(--halfThird));
-}
-.red.stk1, .red.stk4, .red.stk7 {
+.faceL {
     background-color: red;
-    transform: rotateY(-90deg) translateX(var(--twoThird)) translateZ(var(--halfThird));
 }
-.red.stk2, .red.stk5, .red.stk8 {
-    background-color: red;
-    transform: rotateY(-90deg) translateZ(var(--halfCube));
+.faceR {
+    background-color: darkorange;
 }
-.red.stk3, .red.stk6, .red.stk9 {
-    background-color: red;
-    transform: rotateY(-90deg) translateX(calc(var(--twoThird) * -1)) translateZ(calc(var(--halfCube) + var(--twoThird)));
+
+.corner1, .side1, .corner2, .side2, .corner3, .side3, .corner4, .side4, .center1 {
+    transform: translateZ(var(--pieceSize));
 }
-.orange.stk1, .orange.stk4, .orange.stk7 {
-    background-color: orange;
-    transform: rotateY(90deg) translateX(calc(var(--twoThird) * -1)) translateZ(calc(var(--halfCube) + var(--twoThird)));
+.corner5, .side9, .corner6, .side10, .corner7, .side11, .corner8, .side12, .center2 {
+    transform: translateZ(calc(var(--pieceSize) * (-1)));
 }
-.orange.stk2, .orange.stk5, .orange.stk8 {
-    background-color: orange;
-    transform: rotateY(90deg) translateZ(var(--halfCube));
+
+.faceF, .face1 {
+    transform: translateZ(var(--halfPiece));
 }
-.orange.stk3, .orange.stk6, .orange.stk9 {
-    background-color: orange;
-    transform: rotateY(90deg) translateX(var(--twoThird)) translateZ(var(--halfThird));
+.faceB, .face2 {
+    transform: rotateY(180deg) translateZ(var(--halfPiece));
+}
+.faceU, .face3 {
+    transform: rotateX(90deg) translateZ(var(--halfPiece));
+}
+.faceD, .face4 {
+    transform: rotateX(-90deg) translateZ(var(--halfPiece));
+}
+.faceL, .face5 {
+    transform: rotateY(-90deg) translateZ(var(--halfPiece));
+}
+.faceR, .face6 {
+    transform: rotateY(90deg) translateZ(var(--halfPiece));
 }

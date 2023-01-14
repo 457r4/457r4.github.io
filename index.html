@@ -1,82 +1,223 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <title>Rubik</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="application">
-        <div id="schemeContainer">
-            <div id="scheme"></div>
-        </div>
-        <div id="cubeContainer">
-            <div id="cube">
-                <div class="white stk1"></div>
-                <div class="white stk2"></div>
-                <div class="white stk3"></div>
-                <div class="white stk4"></div>
-                <div class="white stk5"></div>
-                <div class="white stk6"></div>
-                <div class="white stk7"></div>
-                <div class="white stk8"></div>
-                <div class="white stk9"></div>
-                <div class="yellow stk1"></div>
-                <div class="yellow stk2"></div>
-                <div class="yellow stk3"></div>
-                <div class="yellow stk4"></div>
-                <div class="yellow stk5"></div>
-                <div class="yellow stk6"></div>
-                <div class="yellow stk7"></div>
-                <div class="yellow stk8"></div>
-                <div class="yellow stk9"></div>
-                <div class="green stk1"></div>
-                <div class="green stk2"></div>
-                <div class="green stk3"></div>
-                <div class="green stk4"></div>
-                <div class="green stk5"></div>
-                <div class="green stk6"></div>
-                <div class="green stk7"></div>
-                <div class="green stk8"></div>
-                <div class="green stk9"></div>
-                <div class="blue stk1"></div>
-                <div class="blue stk2"></div>
-                <div class="blue stk3"></div>
-                <div class="blue stk4"></div>
-                <div class="blue stk5"></div>
-                <div class="blue stk6"></div>
-                <div class="blue stk7"></div>
-                <div class="blue stk8"></div>
-                <div class="blue stk9"></div>
-                <div class="red stk1"></div>
-                <div class="red stk2"></div>
-                <div class="red stk3"></div>
-                <div class="red stk4"></div>
-                <div class="red stk5"></div>
-                <div class="red stk6"></div>
-                <div class="red stk7"></div>
-                <div class="red stk8"></div>
-                <div class="red stk9"></div>
-                <div class="orange stk1"></div>
-                <div class="orange stk2"></div>
-                <div class="orange stk3"></div>
-                <div class="orange stk4"></div>
-                <div class="orange stk5"></div>
-                <div class="orange stk6"></div>
-                <div class="orange stk7"></div>
-                <div class="orange stk8"></div>
-                <div class="orange stk9"></div>
-                <div class="front"></div>
-                <div class="back"></div>
-                <div class="up"></div>
-                <div class="down"></div>
-                <div class="left"></div>
-                <div class="right"></div>
+    <div class="rubik">
+        <div class="cubeContainer">
+            <div class="center1">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="center2">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="center3">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="center4">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="center5">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="center6">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="corner1">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="corner2">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="corner3">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="corner4">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="corner5">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="corner6">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="corner7">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="corner8">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="side1">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side2">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="side3">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side4">
+                <div class="faceF"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side5">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side6">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="side7">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
+            </div>
+            <div class="side8">
+                <div class="face1"></div>
+                <div class="face2"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side9">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="faceU"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side10">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="faceL"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side11">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="faceD"></div>
+                <div class="face5"></div>
+                <div class="face6"></div>
+            </div>
+            <div class="side12">
+                <div class="face1"></div>
+                <div class="faceB"></div>
+                <div class="face3"></div>
+                <div class="face4"></div>
+                <div class="face5"></div>
+                <div class="faceR"></div>
             </div>
         </div>
-        <div id="controlsContainer">
-            <div id="controls"></div>
-        </div>
-        <script src="script.js"></script>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
