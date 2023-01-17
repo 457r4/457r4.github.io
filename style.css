@@ -84,11 +84,11 @@ body {
     position: absolute;
     height: var(--pieceSize);
     width: var(--pieceSize);
-    border: solid 2px black;
+    border: solid 0.15rem black;
     border-radius: 15%;
 }
 .face1, .face2, .face3, .face4, .face5, .face6 {
-    background-color: black;
+    background-color: rgb(10, 10, 10);
 }
 .faceF {
     background-color: white;

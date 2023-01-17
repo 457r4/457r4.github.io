@@ -7,7 +7,7 @@ function rotateCube() {
   // cube.style.transform = `rotateY(-${angle}deg)`;
 }
 
-setInterval(rotateCube, 1);
+// setInterval(rotateCube, 1);
 
 
 const center1 = document.querySelector('.center1');
@@ -81,8 +81,8 @@ function rotateTransversal(area, startAngle, finalAngle, i = 0) {
                 transform: `rotate(${finalAngle}deg) ${transversalDisplace[area]}`
             }
         ], {
-            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 1000),
-            easing: 'linear',
+            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 200),
+            easing: 'ease-in-out',
             // iterations: Infinity
             fill: 'forwards'
         });
@@ -114,7 +114,7 @@ function rotateHorizontal(area, startAngle, finalAngle, i = 0) {
                 transform: `rotateY(${finalAngle}deg) ${displace}`
             }
         ], {
-            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 1000),
+            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 200),
             easing: 'linear',
             // iterations: Infinity
             fill: 'forwards'
@@ -122,8 +122,6 @@ function rotateHorizontal(area, startAngle, finalAngle, i = 0) {
         i++;
     });
 }
-
-// document.querySelector('.cubeContainer').style.transform = 'rotateX(-45deg) rotateY(45deg)';
 
 function rotateVertical(area, startAngle, finalAngle, i = 0) {
     if (area != 2) {
@@ -149,14 +147,93 @@ function rotateVertical(area, startAngle, finalAngle, i = 0) {
                 transform: `rotateX(${finalAngle}deg) ${displace}`
             }
         ], {
-            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 1000),
+            duration: Math.abs(((Math.abs(finalAngle) - Math.abs(startAngle)) / 90) * 200),
             easing: 'linear',
-            iterations: Infinity
-            // fill: 'forwards'
+            // iterations: Infinity
+            fill: 'forwards'
         });
         i++;
     });
 }
+
+var transversalAngle = horizontalAngle = verticalAngle = transversalAngleReverse = horizontalAngleReverse = verticalAngleReverse = 0;
+function rotate(zone, section, RR, shift) {
+    let angle = 0;
+    if (zone === 'transversal') {
+        angle = (RR === 'right') ? transversalAngle : transversalAngleReverse;
+        angle += shift;
+        rotateTransversal(section, angle - shift, angle);
+        (RR === 'right') ? transversalAngle = angle : transversalAngleReverse = angle;
+    } else if (zone === 'horizontal') {
+        angle = (RR === 'right') ? horizontalAngle : horizontalAngleReverse;
+        angle += shift;
+        rotateHorizontal(section, angle - shift, angle);
+        (RR === 'right') ? horizontalAngle = angle : horizontalAngleReverse = angle;
+    } else {
+        angle = (RR === 'right') ? verticalAngle : verticalAngleReverse;
+        angle += shift;
+        rotateVertical(section, angle - shift, angle);
+        (RR === 'right') ? verticalAngle = angle : verticalAngleReverse = angle;
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "q")
+        rotate('transversal', 0, 'right', 90);
+    else if (event.shiftKey && event.key === "Q")
+        rotate('transversal', 0, 'right', -90);
+    if (event.key === "a")
+        rotate('transversal', 2, 'reverse', 90);
+    else if (event.shiftKey && event.key === "A")
+        rotate('transversal', 2, 'reverse', -90);
+
+    if (event.key === "w")
+        rotate('horizontal', 0, 'right', 90);
+    else if (event.shiftKey && event.key === "W")
+        rotate('horizontal', 0, 'right', -90);
+    if (event.key === "s")
+        rotate('horizontal', 2, 'reverse', 90);
+    else if (event.shiftKey && event.key === "S")
+        rotate('horizontal', 2, 'reverse', -90);
+
+    if (event.key === "e")
+        rotate('vertical', 0, 'right', 90);
+    else if (event.shiftKey && event.key === "E")
+        rotate('vertical', 0, 'right', -90);
+    if (event.key === "d")
+        rotate('vertical', 2, 'reverse', 90);
+    else if (event.shiftKey && event.key === "D")
+        rotate('vertical', 2, 'reverse', -90);
+});
+
+
+var xAngle = -30, yAngle = 45;
+var displacement = 3;
+var upPressed = downPressed = leftPressed = rightPressed = false;
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowUp") upPressed = true;
+    if (event.key === "ArrowDown") downPressed = true;
+    if (event.key === "ArrowLeft") leftPressed = true;
+    if (event.key === "ArrowRight") rightPressed = true;
+});
+document.addEventListener("keyup", function(event) {
+    if (event.key === "ArrowUp") upPressed = false;
+    if (event.key === "ArrowDown") downPressed = false;
+    if (event.key === "ArrowLeft") leftPressed = false;
+    if (event.key === "ArrowRight") rightPressed = false;
+});
+
+function updateCube() {
+    if (upPressed) xAngle += displacement;
+    if (downPressed) xAngle -= displacement;
+    if (leftPressed) yAngle -= displacement;
+    if (rightPressed) yAngle += displacement;
+    cube.style.transform = `rotateX(${xAngle}deg) rotateY(${yAngle}deg)`;
+    requestAnimationFrame(updateCube);
+}
+
+requestAnimationFrame(updateCube);
 
 
 // CSS VARIABLES
