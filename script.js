@@ -1,3 +1,7 @@
+// Note: Create a literal cube (an array of matrixes) to manage the pieces, rotations, and cube's mixing
+
+
+
 const cube = document.querySelector('.cubeContainer');
 let angle = 0;
 
